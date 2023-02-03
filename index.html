@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,7 +10,7 @@
     <body>
         <header class="header">
             <div class="header__left-block">
-                <div class="header__logo">
+                <div    class="header__logo">
                     <img src="icons/logo.svg" alt="Логотип">
                 </div>
                 <nav class="header__links">
@@ -18,7 +19,7 @@
                 </nav>
             </div>
             <div class="header__right-block">
-                <button data-modal class="btn btn_white btns">Связаться с нами</button>
+                <button data-modal class="btn btn_white">Связаться с нами</button>
             </div>
         </header>
         <div class="sidepanel">
@@ -33,31 +34,30 @@
                 <img src="icons/facebook.svg" alt="facebook">
             </a>
         </div>
-
         <div class="preview">
             <div class="bgc_blue"></div>
             <div class="container">
                 <div class="tabcontainer">
                     <div class="tabcontent">
-                        <img data-images="first" src="img/tabs/vegy.jpg" alt="vegy">
+                        <img src="img/tabs/vegy.jpg" alt="vegy">
                         <div class="tabcontent__descr">
                             Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Для людей, которые интересуются спортом; активных и здоровых. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!
                         </div>
                     </div>
                     <div class="tabcontent">
-                        <img data-images="second" src="img/tabs/elite.jpg" alt="elite">
+                        <img src="img/tabs/elite.jpg" alt="elite">
                         <div class="tabcontent__descr">
                             Меню “Премиум” - мы используем не только красивый дизайн упаковки, но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты - ресторанное меню без похода в ресторан!
                         </div>
                     </div>
                     <div class="tabcontent">
-                        <img data-images="third" src="img/tabs/post.jpg" alt="post">
+                        <img src="img/tabs/post.jpg" alt="post">
                         <div class="tabcontent__descr">
                             Наше специальное “Постное меню” - это тщательный подбор ингредиентов: полное отсутствие продуктов животного происхождения. Полная гармония с собой и природой в каждом элементе! Все будет Ом!
                         </div>
                     </div>
                     <div class="tabcontent">
-                        <img data-images="fourth" src="img/tabs/vegy.jpg" alt="vegy">
+                        <img src="img/tabs/vegy.jpg" alt="vegy">
                         <div class="tabcontent__descr">
                             Меню "Сбалансированное" - это соответствие вашего рациона всем научным рекомендациям. Мы тщательно просчитываем вашу потребность в к/б/ж/у и создаем лучшие блюда для вас.
                         </div>
@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <div class="offer__action">
-                    <button data-modal class="btn btn_dark btns">Связаться с нами</button>
+                    <button data-modal class="btn btn_dark">Связаться с нами</button>
                 </div>
             </div>
             <div class="container">
@@ -125,6 +125,30 @@
                         <div class="offer__slide">
                             <img src="img/slider/paprika.jpg" alt="paprika">
                         </div>
+                        <div class="offer__slide">
+                            <img src="img/slider/pepper.jpg" alt="pepper">
+                        </div>
+                        <div class="offer__slide">
+                            <img src="img/slider/food-12.jpg" alt="food">
+                        </div>
+                        <div class="offer__slide">
+                            <img src="img/slider/olive-oil.jpg" alt="oil">
+                        </div>
+                        <div class="offer__slide">
+                            <img src="img/slider/paprika.jpg" alt="paprika">
+                        </div><div class="offer__slide">
+                            <img src="img/slider/pepper.jpg" alt="pepper">
+                        </div>
+                        <div class="offer__slide">
+                            <img src="img/slider/food-12.jpg" alt="food">
+                        </div>
+                        </div><div class="offer__slide">
+                            <img src="img/slider/pepper.jpg" alt="pepper">
+                        </div>
+                        <div class="offer__slide">
+                            <img src="img/slider/food-12.jpg" alt="food">
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -140,8 +164,8 @@
                         Ваш пол
                     </div>
                     <div class="calculating__choose" id="gender">
-                        <div class="calculating__choose-item calculating__choose-item_active">Женщина</div>
-                        <div class="calculating__choose-item">Мужчина</div>
+                        <div data-g="woman" class="calculating__choose-item calculating__choose-item_active">Женщина</div>
+                        <div data-g="man" class="calculating__choose-item">Мужчина</div>
                     </div>
                     <div class="calculating__subtitle">
                         Ваша конституция
@@ -170,10 +194,10 @@
                         Выберите вашу физическая активность
                     </div>
                     <div class="calculating__choose calculating__choose_big">
-                        <div id="low" class="calculating__choose-item3">Низкая активность</div>
-                        <div id="small" class="calculating__choose-item3 calculating__choose-item_active">Невысокая активность</div>
-                        <div id="medium" class="calculating__choose-item3">Умеренная активность</div>
-                        <div id="high" class="calculating__choose-item3">Высокая активность</div>
+                        <div data-act="1.2" class="calculating__choose-item3">Низкая активность</div>
+                        <div data-act="1.375" class="calculating__choose-item3 calculating__choose-item_active">Невысокая активность</div>
+                        <div data-act="1.55" class="calculating__choose-item3">Умеренная активность</div>
+                        <div data-act="1.725" class="calculating__choose-item3">Высокая активность</div>
                     </div>
                     <div class="calculating__divider"></div>
                     <div class="calculating__total">
@@ -181,7 +205,7 @@
                             Ваша суточная норма калорий:
                         </div>
                         <div class="calculating__result">
-                            <span>2700</span>
+                            <span id="result" >2700</span>
                             ккал
                         </div>
                     </div>
@@ -338,6 +362,6 @@
                 </div>
             </div>
         </div>
-        <script src="js/script.js"></script>
+        <script src="./script.js"></script>
     </body>
 </html>
