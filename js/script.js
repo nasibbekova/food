@@ -33,12 +33,12 @@ closeBtns.onclick = () =>{
 
 
 
-let isEnought = false
-body.onscroll = () =>{
-    if(Math.ceil(window.innerHeight+window.scrollY) >=body.offsetHeight &&isEnought === false){
-        open()
-    }
-}
+// let isEnought = false
+// body.onscroll = () =>{
+//     if(Math.ceil(window.innerHeight+window.scrollY) >=body.offsetHeight &&isEnought === false){
+//         open()
+//     }
+// }
 
 
 let foodImgs = document.querySelectorAll ('.tabcontainer .tabcontent') //изображение
@@ -46,22 +46,22 @@ let tabheader__items = document.querySelectorAll ('div[data-type]') //стиль
 let tabcontentFood = document.querySelectorAll ('.tabcontainer .tabcontent__descr') //текст 
 let calculating = docment.querySelectorAll ('.calculating .calculating__choose')
 
-let foodImages = {
-    first:'./img/slider/food-12.jpg',
-    second: './img/slider/olive-oil.jpg',
-    third: './img/slider/paprica.jpg',
-    fourth: './img/slider/pepper.jpg'
-}
+foodImgs.forEach(el => el.classList.add('hide'))
+foodImgs[0].classList.remove('hide')
 
 tabheader__items.forEach (item =>{
     item.onclick = () =>{
         let key = item.getAttribute('data-type')
-        let img = foodImages[key]
-        foodImgs.style.backgroundImage = `url(${img})`
-        tabcontentFood.innerHTML = key 
+        let tabContent = foodImgs[key]
 
-        calculating.forEach(el.classList.remove ('calculating__choose-item_active'))
-        item.classList.add('calculating__choose-item_active')
+        foodImgs.forEach(el =>el.classList.add('hide'))
+
+        tabContent.classList.remove('hide')
+        tabContent.classList.add('show', 'fade' )
+
+        tabheader__items.forEach(i=> i.classList.remove('tabheader__item_active'))
+
+        item.classList.add('tabheader__item_active')
     }
 })
 
