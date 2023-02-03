@@ -1,68 +1,194 @@
-let modalWindow = document.querySelector('.modal')
-let modalBg = document.querySelectorAll('.modal__bg')
-let openBtns = document.querySelectorAll('.btns')
-let closeBtns = document.querySelector('.modal__close')
+let attr = document.querySelectorAll("button[data-modal]")
+let modalWindow = document.querySelector(".modal")
+let modalBack = document.querySelector(".container")
+let close = document.querySelector(".modal__close")
+let body = document.body
+let images = document.querySelectorAll(".tabcontent")
+let types = document.querySelectorAll("div[data-type]")
+let next = document.querySelector(".offer__slider-next")
+let prev = document.querySelector(".offer__slider-prev")
+let slides = document.querySelectorAll(".offer__slide")
+let total = document.querySelector("#total")
+let current = document.querySelector("#current")
+let count = 0
 
-openBtns.forEach((btn) =>{
-    btn.onclick = () =>{
-        modalWindow.style.display = "flex"
-        modalBg.style.display = "block"
+function open() {
+    modalWindow.style.display = "block"
+    setTimeout(() => {
+        modalBack.style.opacity = "0.7"
+        modalWindow.style.opacity = "1"
+    }, 200);
+}
 
-        setTimeout(() =>{
-            modalWindow.style.opacity = '1'
-            modalBg.style.opacity = '1'
-            modalWindow.style.scale = '1'
-            modalWindow.style.rotate = '0deg'
-        },200)
+attr.forEach(btn => {
+    btn.onclick = () => {
+        open()
+    }
+})
+
+close.onclick = () => {
+    modalBack.style.opacity = "1"
+    modalWindow.style.opacity = "0"
+    setTimeout(() => {
+        modalWindow.style.display = "none"
+    }, 200);
+}
+
+body.onscroll = () => {
+    if (Math.floor(window.innerHeight + window.scrollY >= body.offsetHeight - 1)) {
+        open()
+    }
+    body.onscroll = ""
+}
+
+function changeImg(active) {
+    images.forEach(img => {
+        img.classList.add("hide")
+    })
+    types.forEach(type => {
+        type.classList.remove("tabheader__item_active")
+    })
+    images[active].classList.remove("hide")
+    images[active].classList.add("show", "fade")
+    types[active].classList.add("tabheader__item_active")
+}
+
+changeImg(count)
+
+types.forEach(type => {
+    type.onclick = () => {
+        changeImg(type.getAttribute("data-type"))
     }
 })
 
 
-closeBtns.onclick = () =>{
-    modalWindow.style.display = 'none'
-    modalWindow.style.rotate = "0deg"
-    modalWindow.style.scale = '2'
-    modalWindow.style.opacity = '0'
-    modalBg.style.opacity = '0'
+total.innerHTML = slides.length
 
-    setTimeout(() =>{
-        modalWindow.style.display = 'none'
-        modalBg.style.dipsla3 = 'none'
-    },200)
+total.innerHTML.length == 1 ? total.innerHTML = "0" + slides.length : total.innerHTML = slides.length
+
+function changeSlides(n) {
+    slides.forEach(slide => {
+        slide.classList.add("hide")
+    })
+    slides[n].classList.remove("hide")
+    slides[n].classList.add("show", "fade")
+    String(n).length == 1 && n <= 8 ? current.innerHTML = "0" + (n + 1) : current.innerHTML = n + 1
+}
+
+changeSlides(count)
+
+next.onclick = () => {
+    if (count >= slides.length - 1) {
+        count = -1
+    }
+    count++
+    changeSlides(count)
+}
+
+prev.onclick = () => {
+    if (count < 1) {
+        count = slides.length
+    }
+    count--
+    changeSlides(count)
 }
 
 
 
-// let isEnought = false
-// body.onscroll = () =>{
-//     if(Math.ceil(window.innerHeight+window.scrollY) >=body.offsetHeight &&isEnought === false){
-//         open()
-//     }
-// }
+document.addEventListener('DOMContentLoaded', function () {
+    // конечная дата
+    const deadline = new Date(2023, 01, 11);
+    // id таймера
+    let timerId = null;
+    // склонение числительных
+    function declensionNum(num, words) {
+        return words[(num % 100 > 4 && num % 100 < 20) ? 2 : [2, 0, 1, 1, 1, 2][(num % 10 < 5) ? num % 10 : 5]];
+    }
+    // вычисляем разницу дат и устанавливаем оставшееся времени в качестве содержимого элементов
+    function countdownTimer() {
+        const diff = deadline - new Date();
+        if (diff <= 0) {
+            clearInterval(timerId);
+        }
+        const days = diff > 0 ? Math.floor(diff / 1000 / 60 / 60 / 24) : 0;
+        const hours = diff > 0 ? Math.floor(diff / 1000 / 60 / 60) % 24 : 0;
+        const minutes = diff > 0 ? Math.floor(diff / 1000 / 60) % 60 : 0;
+        const seconds = diff > 0 ? Math.floor(diff / 1000) % 60 : 0;
+        $days.textContent = days < 10 ? '0' + days : days;
+        $hours.textContent = hours < 10 ? '0' + hours : hours;
+        $minutes.textContent = minutes < 10 ? '0' + minutes : minutes;
+        $seconds.textContent = seconds < 10 ? '0' + seconds : seconds;
+        $days.dataset.title = declensionNum(days, ['день', 'дня', 'дней']);
+        $hours.dataset.title = declensionNum(hours, ['час', 'часа', 'часов']);
+        $minutes.dataset.title = declensionNum(minutes, ['минута', 'минуты', 'минут']);
+        $seconds.dataset.title = declensionNum(seconds, ['секунда', 'секунды', 'секунд']);
+    }
+    // получаем элементы, содержащие компоненты даты
+    const $days = document.querySelector('#days');
+    const $hours = document.querySelector('#hours');
+    const $minutes = document.querySelector('#minutes');
+    const $seconds = document.querySelector('#seconds');
+    // вызываем функцию countdownTimer
+    countdownTimer();
+    // вызываем функцию countdownTimer каждую секунду
+    timerId = setInterval(countdownTimer, 1000);
+});
 
+//  calculating functions
+let genderBtns = document.querySelectorAll('.calculating__choose-item')
+let actBtns = document.querySelectorAll('.calculating__choose-item3')
+let constitutionInps = document.querySelectorAll('.calculating__choose_medium input')
+let result = document.querySelector('#result')
+let btn = document.querySelector(".btn_min")
 
-let foodImgs = document.querySelectorAll ('.tabcontainer .tabcontent') //изображение
-let tabheader__items = document.querySelectorAll ('div[data-type]') //стиль питания 
-let tabcontentFood = document.querySelectorAll ('.tabcontainer .tabcontent__descr') //текст 
-let calculating = docment.querySelectorAll ('.calculating .calculating__choose')
+let userInfo = {
+    gender: "woman"
+}
 
-foodImgs.forEach(el => el.classList.add('hide'))
-foodImgs[0].classList.remove('hide')
+genderBtns.forEach(item => {
+    item.onclick = () => {
+        genderBtns.forEach(el => el.classList.remove('calculating__choose-item_active'))
+        item.classList.add('calculating__choose-item_active')
 
-tabheader__items.forEach (item =>{
-    item.onclick = () =>{
-        let key = item.getAttribute('data-type')
-        let tabContent = foodImgs[key]
-
-        foodImgs.forEach(el =>el.classList.add('hide'))
-
-        tabContent.classList.remove('hide')
-        tabContent.classList.add('show', 'fade' )
-
-        tabheader__items.forEach(i=> i.classList.remove('tabheader__item_active'))
-
-        item.classList.add('tabheader__item_active')
+        let gen = item.getAttribute('data-g')
+        userInfo.gender = gen
     }
 })
 
+constitutionInps.forEach(inp => {
+    inp.oninput = () => {
+        userInfo[inp.id] = inp.value
+    }
+})
 
+actBtns.forEach(item => {
+    item.onclick = () => {
+        actBtns.forEach(el => el.classList.remove('calculating__choose-item_active'))
+        item.classList.add('calculating__choose-item_active')
+        let act = item.getAttribute('data-act')   
+        userInfo.act = +act
+
+        if(userInfo.gender === 'woman') {
+            // woman
+            let BMR = 447.6 + (9.2 * userInfo.weight) + (3.1 * userInfo.height) - (4.3 * userInfo.age)
+
+            BMR = BMR * userInfo.act
+
+            result.innerHTML = isNaN(Math.round(BMR)) ? 'Заполни поля' : Math.round(BMR)
+        } else {
+            // man
+            let BMR = 88.36 + (13.4 * userInfo.weight) + (4.8 * userInfo.height) - (5.7 * userInfo.age)
+
+            BMR = BMR * userInfo.act
+
+            result.innerHTML = isNaN(Math.round(BMR)) ? 'Заполни поля дибил' : Math.round(BMR)
+        }
+
+    }
+})
+
+constitutionInps.forEach(inp => {
+    inp.oninput = () => {
+        userInfo[inp.id] = inp.value
+    }
+})
